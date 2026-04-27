@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIMU - 个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #f8f5ff;
+            color: #2d3748;
+        }
+
+        /* 导航栏 - 第一版原始配色 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.1);
+            z-index: 999;
+        }
+
+        .nav-box {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #6366f1;
+        }
+
+        .nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #4a5568;
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            color: #8b5cf6;
+        }
+
+        /* 头部横幅 - 第一版原始渐变 */
+        .banner {
+            height: 100vh;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .banner h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: white;
+            color: #6366f1;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
+        }
+
+        /* 通用模块 */
+        .section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #6366f1;
+            margin-bottom: 40px;
+        }
+
+        /* 关于我 */
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ede9fe;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+        }
+
+        .about-text {
+            max-width: 550px;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            color: #8b5cf6;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        /* 技能卡片 */
+        .skill-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.08);
+            border-top: 4px solid #6366f1;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: #6366f1;
+            margin-bottom: 10px;
+        }
+
+        /* 项目 */
+        .project-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.08);
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            color: #8b5cf6;
+            margin-bottom: 8px;
+        }
+
+        /* 联系 */
+        .contact {
+            text-align: center;
+            line-height: 2;
+            font-size: 17px;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #1e1b4b;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .small-text {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .banner h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav>
+        <div class="nav-box">
+            <div class="logo">ZIMU</div>
+            <div class="nav">
+                <a href="#about">关于我</a>
+                <a href="#skills">技能</a>
+                <a href="#projects">项目</a>
+                <a href="#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 横幅 -->
+    <div class="banner">
+        <h1>你好，我是 ZIMU</h1>
+        <p>Unity游戏开发 | Blender三维美术 | 创意创作者</p>
+        <a href="#about" class="btn">了解更多</a>
+    </div>
+
+    <!-- 关于我 -->
+    <div class="section" id="about">
+        <h2>关于我</h2>
+        <div class="about">
+            <!-- 头像图片 -->
+            <img src="个人HTML网页设计.png" alt="ZIMU">
+            <div class="about-text">
+                <h3>Hi，我是 ZIMU</h3>
+                <p>我是一名专注于游戏开发与三维艺术的创作者，精通使用 <strong>Unity</strong> 进行游戏场景搭建、交互逻辑开发与动画制作。</p>
+                <p>熟练掌握 <strong>Blender</strong> 三维建模、材质渲染、骨骼绑定与动画设计，擅长将代码与美术结合，打造完整的原创游戏与3D视觉作品。</p>
+                <p>热爱技术与艺术的融合，持续在游戏开发、三维设计领域学习与创作。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 技能 -->
+    <div class="section" id="skills">
+        <h2>专业技能</h2>
+        <div class="skill-box">
+            <div class="skill-card">
+                <h3>Unity游戏开发</h3>
+                <p>C#脚本 | 场景搭建 | 交互系统 | 动画控制</p>
+            </div>
+            <div class="skill-card">
+                <h3>Blender三维美术</h3>
+                <p>建模 | 材质 | 渲染 | 骨骼绑定 | 动画制作</p>
+            </div>
+            <div class="skill-card">
+                <h3>网页设计</h3>
+                <p>HTML | CSS | 响应式布局 | 视觉设计</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 项目 -->
+    <div class="section" id="projects">
+        <h2>项目作品</h2>
+        <div class="project-box">
+            <div class="project-card">
+                <!-- 项目1图片 -->
+                <img src="个人HTML网页设计 (2).png" alt="Unity项目">
+                <div class="project-info">
+                    <h3>Unity独立游戏</h3>
+                    <p>使用Unity开发的完整小游戏，包含角色控制、场景交互、剧情触发等核心功能。</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <!-- 项目2图片 -->
+                <img src="个人HTML网页设计 (1).png" alt="Blender作品">
+                <div class="project-info">
+                    <h3>Blender3D原创作品</h3>
+                    <p>使用Blender制作的角色/场景模型，完成建模、材质、渲染全流程创作。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系 -->
+    <div class="section contact" id="contact">
+        <h2>联系我</h2>
+        <p>📩 邮箱：qizhidaoshang@qq.com</p>
+        <p>🎮 专注：Unity & Blender 创意创作</p>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2026 ZIMU 版权所有</p>
+        <p class="small-text">HTML网页作业</p>
+    </footer>
+</body>
+</html>
